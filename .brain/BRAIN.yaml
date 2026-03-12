@@ -1,0 +1,115 @@
+name: Metabolic Monitor
+type: healthtech-saas
+domain: digital-metabolic-monitoring
+
+product:
+  name: Metabolic Monitor
+  tagline: "Plataforma de Monitoramento Terapêutico Metabólico Digital"
+  concept: Remote Therapeutic Monitoring (RTM) para saúde metabólica
+  core_feature: Score Metabólico Integrado (SMI) com 6 domínios
+
+  modules:
+    patient_checkin:
+      description: "Formulário mensal estruturado + upload de exames"
+      data: [peso, medidas, fotos, sintomas, adesão, medicação, exames]
+
+    smi_engine:
+      description: "Score Metabólico Integrado — motor clínico central"
+      domains:
+        - name: composição corporal
+          weight: 0.25
+          markers: [IMC, circunferência abdominal, gordura corporal, gordura visceral]
+        - name: metabolismo glicêmico
+          weight: 0.20
+          markers: [glicemia jejum, insulina, HOMA-IR, HbA1c]
+        - name: inflamação metabólica
+          weight: 0.15
+          markers: [PCR ultrassensível, ferritina, ácido úrico, relação neutrófilo/linfócito]
+        - name: perfil lipídico
+          weight: 0.15
+          markers: [HDL, triglicerídeos, relação TG/HDL, LDL]
+        - name: eixo hormonal
+          weight: 0.15
+          markers_male: [testosterona total, SHBG, estradiol, cortisol, TSH, T3L]
+          markers_female: [estradiol, progesterona, testosterona, cortisol, TSH, T3L]
+        - name: micronutrientes
+          weight: 0.10
+          markers: [vitamina D, B12, ferritina, magnésio, zinco]
+      scale: 0-100
+      interpretation:
+        optimal: "85-100"
+        good: "70-84"
+        moderate_risk: "55-69"
+        dysfunction: "40-54"
+        high_risk: "<40"
+
+    ai_clinical:
+      description: "IA analisa dados e gera resumo clínico estruturado"
+      outputs: [resumo evolutivo, tendências, alertas, sugestão de orientação]
+      constraint: "Médico SEMPRE valida. IA nunca dá conduta autônoma"
+
+    doctor_panel:
+      description: "Fila de pacientes com resumo IA para aprovação"
+      target_time: "3-5 minutos por paciente"
+
+    patient_dashboard:
+      description: "SMI visual, evolução, metas, orientações recebidas"
+
+  pricing:
+    essential:
+      price: 347
+      currency: BRL
+      period: monthly
+      min_commitment: 3 months
+      includes:
+        - check-in mensal estruturado
+        - análise IA dos dados
+        - ajuste mensal médico
+        - canal dúvidas (48h)
+        - dashboard evolução
+        - SMI mensal
+
+    future_b2b:
+      doctor_subscription: "R$500-1.500/mês"
+      white_label: "sob consulta"
+
+persona:
+  primary_user:
+    role: paciente
+    profile: "Adulto 25-60 anos em tratamento metabólico (emagrecimento, hormonal, performance)"
+    pain: "Perde adesão entre consultas, não sabe se está evoluindo, exames desorganizados"
+    desire: "Ver progresso mensurável, receber orientação estruturada, ter acompanhamento contínuo"
+
+  doctor:
+    role: médico
+    profile: "Nutrólogo/endocrinologista que quer escalar atendimento sem perder qualidade"
+    pain: "Não consegue acompanhar todos os pacientes entre consultas, dados desorganizados"
+    desire: "Fila organizada, resumo pronto, aprovar em 3-5 min, receita recorrente"
+
+  first_doctor:
+    name: "Dr. Paulo Almeida"
+    specialty: nutrologia
+    protocols: [tirzepatida, Notox, ALA EV, mapa guiado]
+    focus: [emagrecimento, eixo hormonal, performance metabólica, lipedema]
+
+scientific_basis:
+  concept: Remote Therapeutic Monitoring (RTM)
+  pillars:
+    - Remote Patient Monitoring (RPM)
+    - Behavioral Medicine (adesão via check-ins)
+    - Digital Health Interventions
+    - Precision Lifestyle Medicine
+  references:
+    - "Obesity Reviews"
+    - "Nature Digital Medicine"
+    - "Journal of Medical Internet Research"
+    - "The Lancet Digital Health"
+
+compliance:
+  lgpd: "Art 11 — dados sensíveis de saúde, consentimento explícito"
+  cfm: "Resolução 2.314/2022 — telemedicina"
+  disclaimer: "Monitoramento terapêutico não substitui consulta médica"
+
+squad_feeds:
+  sales_funnel_masters: "Estratégia de vendas, pricing, funil, lançamento"
+  # adaptive-tutor-k12 não se aplica a este projeto
